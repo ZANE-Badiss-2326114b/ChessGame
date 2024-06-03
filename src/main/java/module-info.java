@@ -7,6 +7,6 @@ module your_package_name.chessgame {
                     requires org.kordamp.bootstrapfx.core;
                 requires com.almasb.fxgl.all;
     
-    opens your_package_name.chessgame to javafx.fxml;
-    exports your_package_name.chessgame;
+    opens fr.univamu.iut.s201_chess to javafx.fxml;
+    exports fr.univamu.iut.s201_chess;
 }

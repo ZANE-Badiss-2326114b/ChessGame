@@ -1,4 +1,4 @@
-package your_package_name.chessgame;
+package fr.univamu.iut.s201_chess;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
