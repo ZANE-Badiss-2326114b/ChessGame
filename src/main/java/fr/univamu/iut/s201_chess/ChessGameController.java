@@ -50,6 +50,7 @@ public class ChessGameController {
 
                 if (piece != null) {
                     tile.setPiece(piece);
+                    piece.setTile(tile);
                     pieceGroup.getChildren().add(piece);
                 }
             }
@@ -63,7 +64,12 @@ public class ChessGameController {
             int newY = (int) (event.getSceneY() / ChessGame.TILE_SIZE);
 
             if (isValidMove(piece, newX, newY)) {
+                Tile oldTile = piece.getTile();
+                oldTile.setPiece(null);
+                Tile newTile = board[newX][newY];
                 piece.move(newX, newY);
+                newTile.setPiece(piece);
+                piece.setTile(newTile);
             } else {
                 piece.abortMove();
             }
@@ -72,8 +78,14 @@ public class ChessGameController {
     }
 
     private boolean isValidMove(Piece piece, int newX, int newY) {
-        // Placeholder for actual move validation
-        return true;
+        if (newX < 0 || newX >= ChessGame.WIDTH || newY < 0 || newY >= ChessGame.HEIGHT) {
+            return false;
+        }
+        Tile targetTile = board[newX][newY];
+        if (targetTile.hasPiece() && targetTile.getPiece().getColor() == piece.getColor()) {
+            return false;
+        }
+        return piece.isValidMove(newX, newY, board);
     }
 
     @FXML
@@ -84,7 +96,13 @@ public class ChessGameController {
         if (selectedPiece != null) {
             Tile targetTile = board[x][y];
             if (targetTile != null && targetTile != selectedPiece.getTile()) {
-                selectedPiece.move(x, y);
+                if (isValidMove(selectedPiece, x, y)) {
+                    Tile oldTile = selectedPiece.getTile();
+                    oldTile.setPiece(null);
+                    selectedPiece.move(x, y);
+                    targetTile.setPiece(selectedPiece);
+                    selectedPiece.setTile(targetTile);
+                }
                 selectedPiece = null;
             }
         } else {
