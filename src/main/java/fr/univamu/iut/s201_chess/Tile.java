@@ -1,6 +1,5 @@
 package fr.univamu.iut.s201_chess;
 
-
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -13,7 +12,7 @@ public class Tile extends StackPane {
         this.x = x;
         this.y = y;
         Rectangle rect = new Rectangle(ChessGame.TILE_SIZE, ChessGame.TILE_SIZE);
-        rect.setFill(light ? Color.BEIGE : Color.BROWN);
+        rect.setFill(light ? Color.WHITE : Color.GREEN);  // Change colors here
         getChildren().add(rect);
 
         setTranslateX(x * ChessGame.TILE_SIZE);
