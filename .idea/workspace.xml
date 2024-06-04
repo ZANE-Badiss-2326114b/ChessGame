@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" afterDir="false" />
-    </list>
+    <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717504141577</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Revert &quot;Intégration des images au jeu d'échec&quot;&#10;&#10;This reverts commit e0bfbf7da6bf6a281b6978991dd71686e7880bd2.&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/fr/univamu/iut/s201_chess/Piece.java&#10; &#10; &#10;Réglage du conflit(enfin !) push avec le code avec les images">
+      <created>1717511747218</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717511747218</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +137,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="projet avec début image" />
-    <option name="LAST_COMMIT_MESSAGE" value="projet avec début image" />
+    <MESSAGE value="Revert &quot;Intégration des images au jeu d'échec&quot;&#10;&#10;This reverts commit e0bfbf7da6bf6a281b6978991dd71686e7880bd2.&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/fr/univamu/iut/s201_chess/Piece.java&#10; &#10; &#10;Réglage du conflit(enfin !) push avec le code avec les images" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Intégration des images au jeu d'échec&quot;&#10;&#10;This reverts commit e0bfbf7da6bf6a281b6978991dd71686e7880bd2.&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/fr/univamu/iut/s201_chess/Piece.java&#10; &#10; &#10;Réglage du conflit(enfin !) push avec le code avec les images" />
   </component>
 </project>
