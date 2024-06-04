@@ -89,7 +89,7 @@
       <updated>1717405659376</updated>
       <workItem from="1717405660479" duration="1000" />
       <workItem from="1717406665991" duration="307000" />
-      <workItem from="1717501159933" duration="2284000" />
+      <workItem from="1717501159933" duration="3328000" />
     </task>
     <task id="LOCAL-00001" summary="couleur du plateau">
       <created>1717409443998</created>
@@ -105,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717502586760</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Interface a droite">
+      <created>1717503583594</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717503583594</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +120,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="couleur du plateau" />
-    <option name="LAST_COMMIT_MESSAGE" value="couleur du plateau" />
+    <MESSAGE value="Interface a droite" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interface a droite" />
   </component>
 </project>
