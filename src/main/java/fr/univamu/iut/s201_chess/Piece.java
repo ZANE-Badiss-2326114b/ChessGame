@@ -19,6 +19,11 @@ public class Piece extends StackPane {
 
         initMove(x, y); // Utilisation de la méthode initMove pour initialiser la position
 
+        //ImageView img = new ImageView();
+
+
+
+
         Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
         bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
         bg.setStroke(Color.BLACK);
@@ -35,7 +40,8 @@ public class Piece extends StackPane {
         //ImageView img = new ImageView();
         //img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
 
-        getChildren().addAll(bg, text);
+        //getChildren().addAll(bg, text);
+
 
 
         //getChildren().add(img);
@@ -64,7 +70,7 @@ public class Piece extends StackPane {
         oldX = x * ChessGame.TILE_SIZE;
         oldY = y * ChessGame.TILE_SIZE;
 
-        // Capture logic
+
         Tile targetTile = board[x][y];
         if (targetTile.hasPiece() && targetTile.getPiece().getColor() != this.color) {
             Piece capturedPiece = targetTile.getPiece();
