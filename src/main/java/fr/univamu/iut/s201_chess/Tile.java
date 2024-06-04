@@ -13,7 +13,7 @@ public class Tile extends StackPane {
         this.x = x;
         this.y = y;
         Rectangle rect = new Rectangle(ChessGame.TILE_SIZE, ChessGame.TILE_SIZE);
-        rect.setFill(light ? Color.BEIGE : Color.BROWN);
+        rect.setFill(light ? Color.BEIGE : Color.GREEN);
         getChildren().add(rect);
 
         setTranslateX(x * ChessGame.TILE_SIZE);

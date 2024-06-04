@@ -1,5 +1,7 @@
 package fr.univamu.iut.s201_chess;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -18,20 +20,26 @@ public class Piece extends StackPane {
 
         move(x, y);
 
-        Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
-        bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
-        bg.setStroke(Color.BLACK);
-        bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);
+        //Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
+        //bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
+        //bg.setStroke(Color.BLACK);
+        //bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);
 
-        bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
-        bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
+        //bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
+        //bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
         Text text = new Text(type.toString().substring(0, 1));
         text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);
         text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
         text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
-        getChildren().addAll(bg, text);
+        ImageView img = new ImageView();
+        img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
+
+
+
+
+        getChildren().add(img);
 
         setOnMousePressed(e -> {
             mouseX = e.getSceneX();
