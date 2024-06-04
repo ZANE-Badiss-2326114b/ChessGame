@@ -1,7 +1,6 @@
 package fr.univamu.iut.s201_chess;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -18,28 +17,28 @@ public class Piece extends StackPane {
         this.type = type;
         this.color = color;
 
-        move(x, y);
+        initMove(x, y); // Utilisation de la méthode initMove pour initialiser la position
 
-        //Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
-        //bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
-        //bg.setStroke(Color.BLACK);
-        //bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);
+        Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
+        bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
+        bg.setStroke(Color.BLACK);
+        bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);
 
-        //bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
-        //bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
+        bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
+        bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
         Text text = new Text(type.toString().substring(0, 1));
         text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);
         text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
         text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
-        ImageView img = new ImageView();
-        img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
+        //ImageView img = new ImageView();
+        //img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
+
+        getChildren().addAll(bg, text);
 
 
-
-
-        getChildren().add(img);
+        //getChildren().add(img);
 
         setOnMousePressed(e -> {
             mouseX = e.getSceneX();
@@ -51,11 +50,34 @@ public class Piece extends StackPane {
         });
     }
 
-    public void move(int x, int y) {
+    // Méthode utilisée uniquement lors de l'initialisation
+    private void initMove(int x, int y) {
         oldX = x * ChessGame.TILE_SIZE;
         oldY = y * ChessGame.TILE_SIZE;
         relocate(oldX, oldY);
     }
+
+    public void move(int x, int y, Tile[][] board, Group pieceGroup) {
+        int oldTileX = (int) (oldX / ChessGame.TILE_SIZE);
+        int oldTileY = (int) (oldY / ChessGame.TILE_SIZE);
+
+        oldX = x * ChessGame.TILE_SIZE;
+        oldY = y * ChessGame.TILE_SIZE;
+
+        // Capture logic
+        Tile targetTile = board[x][y];
+        if (targetTile.hasPiece() && targetTile.getPiece().getColor() != this.color) {
+            Piece capturedPiece = targetTile.getPiece();
+            pieceGroup.getChildren().remove(capturedPiece);
+        }
+
+        // Update board positions
+        board[oldTileX][oldTileY].setPiece(null);
+        board[x][y].setPiece(this);
+
+        relocate(oldX, oldY);
+    }
+
 
     public void abortMove() {
         relocate(oldX, oldY);
@@ -77,10 +99,16 @@ public class Piece extends StackPane {
         this.tile = tile;
     }
 
+    public double getOldX() {
+        return oldX;
+    }
+
+    public double getOldY() {
+        return oldY;
+    }
+
     public boolean isValidMove(int newX, int newY, Tile[][] board) {
-        switch (type) {
-            case PAWN:
-                return isValidPawnMove(newX, newY, board);
+        switch (this.getType()) {
             case ROOK:
                 return isValidRookMove(newX, newY, board);
             case KNIGHT:
@@ -91,6 +119,8 @@ public class Piece extends StackPane {
                 return isValidQueenMove(newX, newY, board);
             case KING:
                 return isValidKingMove(newX, newY, board);
+            case PAWN:
+                return isValidPawnMove(newX, newY, board);
             default:
                 return false;
         }
@@ -132,6 +162,7 @@ public class Piece extends StackPane {
 
         return false;
     }
+
     private boolean isValidRookMove(int newX, int newY, Tile[][] board) {
         int currentX = (int) (oldX / ChessGame.TILE_SIZE);
         int currentY = (int) (oldY / ChessGame.TILE_SIZE);

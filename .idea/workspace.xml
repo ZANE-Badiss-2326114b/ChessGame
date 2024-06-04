@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/ChessGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/PieceColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/PieceColor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/PieceType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/PieceType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/your_package_name/chessgame/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/your_package_name/chessgame/ChessGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/your_package_name/chessgame/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,18 +32,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/amuhome/t23001832/Documents/IHM/cc3-earthquakeapp-gpe3-THELU-Nathan-2326105b&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.fr.univamu.iut.s201_chess.ChessGame">
     <configuration name="ChessGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="your_package_name.chessgame.ChessGame" />
@@ -97,11 +88,24 @@
       <option name="presentableId" value="Default" />
       <updated>1717405659376</updated>
       <workItem from="1717405660479" duration="1000" />
-      <workItem from="1717406665991" duration="307000" />
+      <workItem from="1717406665991" duration="2440000" />
+      <workItem from="1717501237625" duration="3510000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactor du package">
+      <created>1717406998540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717406998540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactor du package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor du package" />
   </component>
 </project>
