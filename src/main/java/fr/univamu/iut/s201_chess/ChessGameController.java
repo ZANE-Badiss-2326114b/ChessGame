@@ -2,11 +2,8 @@ package fr.univamu.iut.s201_chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
-import java.util.ArrayList;
 
 public class ChessGameController {
     @FXML
@@ -64,12 +61,9 @@ public class ChessGameController {
             int newY = (int) (event.getSceneY() / ChessGame.TILE_SIZE);
 
             if (isValidMove(piece, newX, newY)) {
-                Tile oldTile = piece.getTile();
-                oldTile.setPiece(null);
-                Tile newTile = board[newX][newY];
-                piece.move(newX, newY);
-                newTile.setPiece(piece);
-                piece.setTile(newTile);
+                piece.move(newX, newY, board, pieceGroup);
+                board[newX][newY].setPiece(piece);
+                board[(int)(piece.getOldX() / ChessGame.TILE_SIZE)][(int)(piece.getOldY() / ChessGame.TILE_SIZE)].setPiece(null);
             } else {
                 piece.abortMove();
             }
@@ -82,11 +76,18 @@ public class ChessGameController {
             return false;
         }
         Tile targetTile = board[newX][newY];
-        if (targetTile.hasPiece() && targetTile.getPiece().getColor() == piece.getColor()) {
-            return false;
+        if (targetTile.hasPiece()) {
+            // Vérifier si la pièce sur la case cible est une pièce ennemie
+            if (targetTile.getPiece().getColor() != piece.getColor()) {
+                return piece.isValidMove(newX, newY, board);
+            } else {
+                return false; // La case cible contient une pièce du même joueur
+            }
+        } else {
+            return piece.isValidMove(newX, newY, board);
         }
-        return piece.isValidMove(newX, newY, board);
     }
+
 
     @FXML
     private void handleMouseClick(MouseEvent event) {
@@ -99,7 +100,7 @@ public class ChessGameController {
                 if (isValidMove(selectedPiece, x, y)) {
                     Tile oldTile = selectedPiece.getTile();
                     oldTile.setPiece(null);
-                    selectedPiece.move(x, y);
+                    selectedPiece.move(x, y, board, pieceGroup);
                     targetTile.setPiece(selectedPiece);
                     selectedPiece.setTile(targetTile);
                 }
