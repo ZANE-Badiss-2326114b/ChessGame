@@ -1,0 +1,377 @@
+Index: src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package fr.univamu.iut.s201_chess;\n\nimport javafx.fxml.FXML;\nimport javafx.scene.Group;\nimport javafx.scene.image.ImageView;\nimport javafx.scene.input.MouseEvent;\nimport javafx.scene.layout.GridPane;\n\nimport java.util.ArrayList;\n\npublic class ChessGameController {\n    @FXML\n    private GridPane chessBoard;\n    @FXML\n    private Group tileGroup;\n    @FXML\n    private Group pieceGroup;\n\n\n    private Tile[][] board = new Tile[ChessGame.WIDTH][ChessGame.HEIGHT];\n    private Piece selectedPiece = null;\n\n    @FXML\n    public void initialize() {\n        for (int y = 0; y < ChessGame.HEIGHT; y++) {\n            for (int x = 0; x < ChessGame.WIDTH; x++) {\n                Tile tile = new Tile((x + y) % 2 == 0, x, y);\n                board[x][y] = tile;\n                tileGroup.getChildren().add(tile);\n                Piece piece = null;\n\n                if (y == 1) {\n                    piece = makePiece(PieceType.PAWN, PieceColor.BLACK, x, y);\n                } else if (y == 6) {\n                    piece = makePiece(PieceType.PAWN, PieceColor.WHITE, x, y);\n                } else if (y == 0 || y == 7) {\n                    PieceColor color = (y == 0) ? PieceColor.BLACK : PieceColor.WHITE;\n                    if (x == 0 || x == 7) {\n                        piece = makePiece(PieceType.ROOK, color, x, y);\n                    } else if (x == 1 || x == 6) {\n                        piece = makePiece(PieceType.KNIGHT, color, x, y);\n                    } else if (x == 2 || x == 5) {\n                        piece = makePiece(PieceType.BISHOP, color, x, y);\n                    } else if (x == 3) {\n                        piece = makePiece(PieceType.QUEEN, color, x, y);\n                    } else if (x == 4) {\n                        piece = makePiece(PieceType.KING, color, x, y);\n                    }\n                }\n\n                if (piece != null) {\n                    tile.setPiece(piece);\n                    pieceGroup.getChildren().add(piece);\n                }\n            }\n        }\n    }\n\n    private Piece makePiece(PieceType type, PieceColor color, int x, int y) {\n        Piece piece = new Piece(type, color, x, y);\n        piece.setOnMouseReleased(event -> {\n            int newX = (int) (event.getSceneX() / ChessGame.TILE_SIZE);\n            int newY = (int) (event.getSceneY() / ChessGame.TILE_SIZE);\n\n            if (isValidMove(piece, newX, newY)) {\n                piece.move(newX, newY);\n            } else {\n                piece.abortMove();\n            }\n        });\n        return piece;\n    }\n\n    private boolean isValidMove(Piece piece, int newX, int newY) {\n        // Placeholder for actual move validation\n        return true;\n    }\n\n    @FXML\n    private void handleMouseClick(MouseEvent event) {\n        int x = (int) (event.getSceneX() / ChessGame.TILE_SIZE);\n        int y = (int) (event.getSceneY() / ChessGame.TILE_SIZE);\n\n        if (selectedPiece != null) {\n            Tile targetTile = board[x][y];\n            if (targetTile != null && targetTile != selectedPiece.getTile()) {\n                selectedPiece.move(x, y);\n                selectedPiece = null;\n            }\n        } else {\n            Tile tile = board[x][y];\n            if (tile.hasPiece()) {\n                selectedPiece = tile.getPiece();\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java b/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java
+--- a/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java	(revision f299ea01e5da1dd2e5e97f9b52bee3d78da6d3e9)
++++ b/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java	(date 1717503036817)
+@@ -50,6 +50,7 @@
+ 
+                 if (piece != null) {
+                     tile.setPiece(piece);
++                    piece.setTile(tile);
+                     pieceGroup.getChildren().add(piece);
+                 }
+             }
+@@ -63,7 +64,12 @@
+             int newY = (int) (event.getSceneY() / ChessGame.TILE_SIZE);
+ 
+             if (isValidMove(piece, newX, newY)) {
++                Tile oldTile = piece.getTile();
++                oldTile.setPiece(null);
++                Tile newTile = board[newX][newY];
+                 piece.move(newX, newY);
++                newTile.setPiece(piece);
++                piece.setTile(newTile);
+             } else {
+                 piece.abortMove();
+             }
+@@ -72,8 +78,14 @@
+     }
+ 
+     private boolean isValidMove(Piece piece, int newX, int newY) {
+-        // Placeholder for actual move validation
+-        return true;
++        if (newX < 0 || newX >= ChessGame.WIDTH || newY < 0 || newY >= ChessGame.HEIGHT) {
++            return false;
++        }
++        Tile targetTile = board[newX][newY];
++        if (targetTile.hasPiece() && targetTile.getPiece().getColor() == piece.getColor()) {
++            return false;
++        }
++        return piece.isValidMove(newX, newY, board);
+     }
+ 
+     @FXML
+@@ -84,7 +96,13 @@
+         if (selectedPiece != null) {
+             Tile targetTile = board[x][y];
+             if (targetTile != null && targetTile != selectedPiece.getTile()) {
+-                selectedPiece.move(x, y);
++                if (isValidMove(selectedPiece, x, y)) {
++                    Tile oldTile = selectedPiece.getTile();
++                    oldTile.setPiece(null);
++                    selectedPiece.move(x, y);
++                    targetTile.setPiece(selectedPiece);
++                    selectedPiece.setTile(targetTile);
++                }
+                 selectedPiece = null;
+             }
+         } else {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"9801fcea-3a25-4fa0-a050-0ad8fa319eeb\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Tile.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Tile.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHome\" value=\"Use Maven wrapper\" />\n        <option name=\"useMavenConfig\" value=\"true\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectId\" id=\"2hMYx0EEma9gYOi9eW6161j75w2\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"autoscrollFromSource\" value=\"true\" />\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RunManager\" selected=\"Application.fr.univamu.iut.s201_chess.ChessGame\">\n    <configuration name=\"ChessGame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"your_package_name.chessgame.ChessGame\" />\n      <module name=\"ChessGame\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"your_package_name.chessgame.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"fr.univamu.iut.s201_chess.ChessGame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"fr.univamu.iut.s201_chess.ChessGame\" />\n      <module name=\"ChessGame\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"fr.univamu.iut.s201_chess.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.ChessGame\" />\n        <item itemvalue=\"Application.fr.univamu.iut.s201_chess.ChessGame\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"9801fcea-3a25-4fa0-a050-0ad8fa319eeb\" name=\"Changes\" comment=\"\" />\n      <created>1717405659376</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1717405659376</updated>\n      <workItem from=\"1717405660479\" duration=\"1000\" />\n      <workItem from=\"1717406665991\" duration=\"307000\" />\n      <workItem from=\"1717501191063\" duration=\"1587000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"ajout d'images\">\n      <created>1717409721469</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1717409721469</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\n    <MESSAGE value=\"ajout d'images\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"ajout d'images\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f299ea01e5da1dd2e5e97f9b52bee3d78da6d3e9)
++++ b/.idea/workspace.xml	(date 1717503509353)
+@@ -6,8 +6,6 @@
+   <component name="ChangeListManager">
+     <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Tile.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -15,11 +13,6 @@
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="Git.Settings">
+-    <option name="RECENT_BRANCH_BY_REPOSITORY">
+-      <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
+-      </map>
+-    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="MavenImportPreferences">
+@@ -41,7 +34,6 @@
+   </component>
+   <component name="PropertiesComponent">{
+   &quot;keyToString&quot;: {
+-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+@@ -81,8 +73,10 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.fr.univamu.iut.s201_chess.ChessGame" />
+         <item itemvalue="Application.ChessGame" />
+         <item itemvalue="Application.fr.univamu.iut.s201_chess.ChessGame" />
++        <item itemvalue="Application.ChessGame" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -96,24 +90,33 @@
+       <updated>1717405659376</updated>
+       <workItem from="1717405660479" duration="1000" />
+       <workItem from="1717406665991" duration="307000" />
+-      <workItem from="1717501191063" duration="1587000" />
+     </task>
+-    <task id="LOCAL-00001" summary="ajout d'images">
+-      <created>1717409721469</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1717409721469</updated>
+-    </task>
+-    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
+-  <component name="VcsManagerConfiguration">
+-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+-    <MESSAGE value="ajout d'images" />
+-    <option name="LAST_COMMIT_MESSAGE" value="ajout d'images" />
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="master" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/fr/univamu/iut/s201_chess/Tile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package fr.univamu.iut.s201_chess;\n\n\nimport javafx.scene.layout.StackPane;\nimport javafx.scene.paint.Color;\nimport javafx.scene.shape.Rectangle;\n\npublic class Tile extends StackPane {\n    private int x, y;\n    private Piece piece;\n\n    public Tile(boolean light, int x, int y) {\n        this.x = x;\n        this.y = y;\n        Rectangle rect = new Rectangle(ChessGame.TILE_SIZE, ChessGame.TILE_SIZE);\n        rect.setFill(light ? Color.BEIGE : Color.GREEN);\n        getChildren().add(rect);\n\n        setTranslateX(x * ChessGame.TILE_SIZE);\n        setTranslateY(y * ChessGame.TILE_SIZE);\n    }\n\n    public boolean hasPiece() {\n        return piece != null;\n    }\n\n    public Piece getPiece() {\n        return piece;\n    }\n\n    public void setPiece(Piece piece) {\n        this.piece = piece;\n    }\n\n    public int getX() {\n        return x;\n    }\n\n    public int getY() {\n        return y;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/fr/univamu/iut/s201_chess/Tile.java b/src/main/java/fr/univamu/iut/s201_chess/Tile.java
+--- a/src/main/java/fr/univamu/iut/s201_chess/Tile.java	(revision f299ea01e5da1dd2e5e97f9b52bee3d78da6d3e9)
++++ b/src/main/java/fr/univamu/iut/s201_chess/Tile.java	(date 1717503073750)
+@@ -13,7 +13,7 @@
+         this.x = x;
+         this.y = y;
+         Rectangle rect = new Rectangle(ChessGame.TILE_SIZE, ChessGame.TILE_SIZE);
+-        rect.setFill(light ? Color.BEIGE : Color.GREEN);
++        rect.setFill(light ? Color.BEIGE : Color.BROWN);
+         getChildren().add(rect);
+ 
+         setTranslateX(x * ChessGame.TILE_SIZE);
+Index: src/main/java/fr/univamu/iut/s201_chess/Piece.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package fr.univamu.iut.s201_chess;\n\nimport javafx.scene.image.Image;\nimport javafx.scene.image.ImageView;\nimport javafx.scene.layout.StackPane;\nimport javafx.scene.paint.Color;\nimport javafx.scene.shape.Ellipse;\nimport javafx.scene.text.Text;\n\npublic class Piece extends StackPane {\n    private PieceType type;\n    private PieceColor color;\n    private double mouseX, mouseY;\n    private double oldX, oldY;\n    private Tile tile;\n\n    public Piece(PieceType type, PieceColor color, int x, int y) {\n        this.type = type;\n        this.color = color;\n\n        move(x, y);\n\n        //Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);\n        //bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);\n        //bg.setStroke(Color.BLACK);\n        //bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);\n\n        //bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);\n        //bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);\n\n        Text text = new Text(type.toString().substring(0, 1));\n        text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);\n        text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);\n        text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);\n\n        ImageView img = new ImageView();\n        img.setImage(new Image(getClass().getResourceAsStream(\"/img/blackPieces/bb.png\")));\n\n\n\n\n        getChildren().add(img);\n\n        setOnMousePressed(e -> {\n            mouseX = e.getSceneX();\n            mouseY = e.getSceneY();\n        });\n\n        setOnMouseDragged(e -> {\n            relocate(e.getSceneX() - mouseX + oldX, e.getSceneY() - mouseY + oldY);\n        });\n    }\n\n    public void move(int x, int y) {\n        oldX = x * ChessGame.TILE_SIZE;\n        oldY = y * ChessGame.TILE_SIZE;\n        relocate(oldX, oldY);\n    }\n\n    public void abortMove() {\n        relocate(oldX, oldY);\n    }\n\n    public PieceType getType() {\n        return type;\n    }\n\n    public PieceColor getColor() {\n        return color;\n    }\n\n    public Tile getTile() {\n        return tile;\n    }\n\n    public void setTile(Tile tile) {\n        this.tile = tile;\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/fr/univamu/iut/s201_chess/Piece.java b/src/main/java/fr/univamu/iut/s201_chess/Piece.java
+--- a/src/main/java/fr/univamu/iut/s201_chess/Piece.java	(revision f299ea01e5da1dd2e5e97f9b52bee3d78da6d3e9)
++++ b/src/main/java/fr/univamu/iut/s201_chess/Piece.java	(date 1717503036860)
+@@ -76,5 +76,185 @@
+     public void setTile(Tile tile) {
+         this.tile = tile;
+     }
+-}
++
++    public boolean isValidMove(int newX, int newY, Tile[][] board) {
++        switch (type) {
++            case PAWN:
++                return isValidPawnMove(newX, newY, board);
++            case ROOK:
++                return isValidRookMove(newX, newY, board);
++            case KNIGHT:
++                return isValidKnightMove(newX, newY, board);
++            case BISHOP:
++                return isValidBishopMove(newX, newY, board);
++            case QUEEN:
++                return isValidQueenMove(newX, newY, board);
++            case KING:
++                return isValidKingMove(newX, newY, board);
++            default:
++                return false;
++        }
++    }
++
++    private boolean isValidPawnMove(int newX, int newY, Tile[][] board) {
++        int currentX = (int) (oldX / ChessGame.TILE_SIZE);
++        int currentY = (int) (oldY / ChessGame.TILE_SIZE);
++        int deltaY = newY - currentY;
++        int deltaX = newX - currentX;
++
++        if (color == PieceColor.WHITE) {
++            // White pawns move up the board (decrease in Y)
++            if (deltaX == 0) {
++                // Moving forward
++                if (deltaY == -1 && !board[newX][newY].hasPiece()) {
++                    return true;
++                } else if (currentY == 6 && deltaY == -2 && !board[newX][newY].hasPiece() && !board[newX][newY + 1].hasPiece()) {
++                    return true;
++                }
++            } else if (Math.abs(deltaX) == 1 && deltaY == -1 && board[newX][newY].hasPiece() && board[newX][newY].getPiece().getColor() != this.color) {
++                // Capturing diagonally
++                return true;
++            }
++        } else if (color == PieceColor.BLACK) {
++            // Black pawns move down the board (increase in Y)
++            if (deltaX == 0) {
++                // Moving forward
++                if (deltaY == 1 && !board[newX][newY].hasPiece()) {
++                    return true;
++                } else if (currentY == 1 && deltaY == 2 && !board[newX][newY].hasPiece() && !board[newX][newY - 1].hasPiece()) {
++                    return true;
++                }
++            } else if (Math.abs(deltaX) == 1 && deltaY == 1 && board[newX][newY].hasPiece() && board[newX][newY].getPiece().getColor() != this.color) {
++                // Capturing diagonally
++                return true;
++            }
++        }
++
++        return false;
++    }
++    private boolean isValidRookMove(int newX, int newY, Tile[][] board) {
++        int currentX = (int) (oldX / ChessGame.TILE_SIZE);
++        int currentY = (int) (oldY / ChessGame.TILE_SIZE);
++
++        // Rook moves in straight lines only
++        if (currentX != newX && currentY != newY) {
++            return false;
++        }
++
++        // Check path for any pieces
++        if (currentX == newX) {
++            // Vertical move
++            int step = (newY > currentY) ? 1 : -1;
++            for (int y = currentY + step; y != newY; y += step) {
++                if (board[currentX][y].hasPiece()) {
++                    return false;
++                }
++            }
++        } else if (currentY == newY) {
++            // Horizontal move
++            int step = (newX > currentX) ? 1 : -1;
++            for (int x = currentX + step; x != newX; x += step) {
++                if (board[x][currentY].hasPiece()) {
++                    return false;
++                }
++            }
++        }
++
++        // Destination must be empty or occupied by an enemy piece
++        Tile targetTile = board[newX][newY];
++        if (targetTile.hasPiece() && targetTile.getPiece().getColor() == this.color) {
++            return false;
++        }
++
++        return true;
++    }
++
++
++    private boolean isValidKnightMove(int newX, int newY, Tile[][] board) {
++        int currentX = (int) (oldX / ChessGame.TILE_SIZE);
++        int currentY = (int) (oldY / ChessGame.TILE_SIZE);
++
++        int deltaX = Math.abs(newX - currentX);
++        int deltaY = Math.abs(newY - currentY);
++
++        // Knights move in an L-shape: 2 by 1 or 1 by 2
++        if ((deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2)) {
++            // Destination must be empty or occupied by an enemy piece
++            Tile targetTile = board[newX][newY];
++            if (!targetTile.hasPiece() || targetTile.getPiece().getColor() != this.color) {
++                return true;
++            }
++        }
++
++        return false;
++    }
++
++
++    private boolean isValidBishopMove(int newX, int newY, Tile[][] board) {
++        int currentX = (int) (oldX / ChessGame.TILE_SIZE);
++        int currentY = (int) (oldY / ChessGame.TILE_SIZE);
++
++        int deltaX = Math.abs(newX - currentX);
++        int deltaY = Math.abs(newY - currentY);
++
++        // Bishops move diagonally, so deltaX must equal deltaY
++        if (deltaX != deltaY) {
++            return false;
++        }
+ 
++        // Check path for any pieces
++        int stepX = (newX > currentX) ? 1 : -1;
++        int stepY = (newY > currentY) ? 1 : -1;
++        int x = currentX + stepX;
++        int y = currentY + stepY;
++
++        while (x != newX && y != newY) {
++            if (board[x][y].hasPiece()) {
++                return false;
++            }
++            x += stepX;
++            y += stepY;
++        }
++
++        // Destination must be empty or occupied by an enemy piece
++        Tile targetTile = board[newX][newY];
++        if (targetTile.hasPiece() && targetTile.getPiece().getColor() == this.color) {
++            return false;
++        }
++
++        return true;
++    }
++
++
++    private boolean isValidQueenMove(int newX, int newY, Tile[][] board) {
++        int currentX = (int) (oldX / ChessGame.TILE_SIZE);
++        int currentY = (int) (oldY / ChessGame.TILE_SIZE);
++
++        int deltaX = Math.abs(newX - currentX);
++        int deltaY = Math.abs(newY - currentY);
++
++        // Check if it's a valid rook move or a valid bishop move
++        return isValidRookMove(newX, newY, board) || isValidBishopMove(newX, newY, board);
++    }
++
++
++    private boolean isValidKingMove(int newX, int newY, Tile[][] board) {
++        int currentX = (int) (oldX / ChessGame.TILE_SIZE);
++        int currentY = (int) (oldY / ChessGame.TILE_SIZE);
++
++        int deltaX = Math.abs(newX - currentX);
++        int deltaY = Math.abs(newY - currentY);
++
++        // King moves only one square in any direction
++        if (deltaX <= 1 && deltaY <= 1) {
++            // Destination must be empty or occupied by an enemy piece
++            Tile targetTile = board[newX][newY];
++            if (!targetTile.hasPiece() || targetTile.getPiece().getColor() != this.color) {
++                return true;
++            }
++        }
++
++        return false;
++    }
++
++}
