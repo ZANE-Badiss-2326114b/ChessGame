@@ -2,8 +2,11 @@ package fr.univamu.iut.s201_chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
+import java.util.ArrayList;
 
 public class ChessGameController {
     @FXML
@@ -12,6 +15,7 @@ public class ChessGameController {
     private Group tileGroup;
     @FXML
     private Group pieceGroup;
+
 
     private Tile[][] board = new Tile[ChessGame.WIDTH][ChessGame.HEIGHT];
     private Piece selectedPiece = null;
