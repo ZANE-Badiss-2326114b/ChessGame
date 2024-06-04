@@ -116,6 +116,7 @@ public class Piece extends StackPane {
     }
 
 
+
     public void abortMove() {
         relocate(oldX, oldY);
     }
@@ -199,7 +200,6 @@ public class Piece extends StackPane {
 
         return false;
     }
-
     private boolean isValidRookMove(int newX, int newY, Tile[][] board) {
         int currentX = (int) (oldX / ChessGame.TILE_SIZE);
         int currentY = (int) (oldY / ChessGame.TILE_SIZE);
