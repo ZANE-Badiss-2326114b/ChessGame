@@ -7,6 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+
+import static fr.univamu.iut.s201_chess.PieceColor.BLACK;
+
 public class Piece extends StackPane {
     private PieceType type;
     private PieceColor color;
@@ -18,6 +22,38 @@ public class Piece extends StackPane {
         this.type = type;
         this.color = color;
 
+        ImageView img = new ImageView();
+
+
+
+
+        if(color == PieceColor.BLACK){
+
+            switch (type){
+
+                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bk.png")));
+                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bp.png")));
+                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/br.png")));
+                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bq.png")));
+                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
+                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bn.png")));
+
+            }
+        }
+        else if(color == PieceColor.WHITE){
+            switch (type){
+                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wk.png")));
+                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wp.png")));
+                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wr.png")));
+                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wq.png")));
+                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wb.png")));
+                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wn.png")));
+            }
+        }
+
+        img.setFitHeight(85);
+        img.setFitWidth(85);
+
         move(x, y);
 
         //Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
@@ -28,13 +64,12 @@ public class Piece extends StackPane {
         //bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
         //bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
-        Text text = new Text(type.toString().substring(0, 1));
-        text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);
-        text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
-        text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
+//        Text text = new Text(type.toString().substring(0, 1));
+//        text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);
+//        text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
+//        text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
-        ImageView img = new ImageView();
-        img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
+
 
 
 
@@ -115,7 +150,7 @@ public class Piece extends StackPane {
                 // Capturing diagonally
                 return true;
             }
-        } else if (color == PieceColor.BLACK) {
+        } else if (color == BLACK) {
             // Black pawns move down the board (increase in Y)
             if (deltaX == 0) {
                 // Moving forward
