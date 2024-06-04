@@ -2,8 +2,11 @@ package fr.univamu.iut.s201_chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
+import java.util.ArrayList;
 
 public class ChessGameController {
     @FXML
@@ -12,6 +15,7 @@ public class ChessGameController {
     private Group tileGroup;
     @FXML
     private Group pieceGroup;
+
 
     private Tile[][] board = new Tile[ChessGame.WIDTH][ChessGame.HEIGHT];
     private Piece selectedPiece = null;
@@ -60,12 +64,9 @@ public class ChessGameController {
             int newY = (int) (event.getSceneY() / ChessGame.TILE_SIZE);
 
             if (isValidMove(piece, newX, newY)) {
-                Tile oldTile = piece.getTile();
-                oldTile.setPiece(null);
-                Tile newTile = board[newX][newY];
-                piece.move(newX, newY);
-                newTile.setPiece(piece);
-                piece.setTile(newTile);
+                piece.move(newX, newY, board, pieceGroup);
+                board[newX][newY].setPiece(piece);
+                board[(int)(piece.getOldX() / ChessGame.TILE_SIZE)][(int)(piece.getOldY() / ChessGame.TILE_SIZE)].setPiece(null);
             } else {
                 piece.abortMove();
             }
@@ -95,7 +96,7 @@ public class ChessGameController {
                 if (isValidMove(selectedPiece, x, y)) {
                     Tile oldTile = selectedPiece.getTile();
                     oldTile.setPiece(null);
-                    selectedPiece.move(x, y);
+                    selectedPiece.move(x, y, board, pieceGroup);
                     targetTile.setPiece(selectedPiece);
                     selectedPiece.setTile(targetTile);
                 }
