@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="fr.univamu.iut.s201_chess.chessPage.ChessGameController">
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="fr.univamu.iut.s201_chess.ChessGameController">
     <HBox>
         <GridPane fx:id="chessBoard" minWidth="640" minHeight="640">
             <children>

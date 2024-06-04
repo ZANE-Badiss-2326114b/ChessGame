@@ -1,4 +1,4 @@
-package fr.univamu.iut.s201_chess.chessPage;
+package fr.univamu.iut.s201_chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -76,11 +76,18 @@ public class ChessGameController {
             return false;
         }
         Tile targetTile = board[newX][newY];
-        if (targetTile.hasPiece() && targetTile.getPiece().getColor() == piece.getColor()) {
-            return false;
+        if (targetTile.hasPiece()) {
+            // Vérifier si la pièce sur la case cible est une pièce ennemie
+            if (targetTile.getPiece().getColor() != piece.getColor()) {
+                return piece.isValidMove(newX, newY, board);
+            } else {
+                return false; // La case cible contient une pièce du même joueur
+            }
+        } else {
+            return piece.isValidMove(newX, newY, board);
         }
-        return piece.isValidMove(newX, newY, board);
     }
+
 
     @FXML
     private void handleMouseClick(MouseEvent event) {

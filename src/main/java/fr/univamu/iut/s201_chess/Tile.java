@@ -1,4 +1,4 @@
-package fr.univamu.iut.s201_chess.chessPage;
+package fr.univamu.iut.s201_chess;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;

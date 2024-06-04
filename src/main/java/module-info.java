@@ -1,4 +1,4 @@
-module your_package_name.chessgame {
+module fr.univamu.iut.s201_chess {
     requires javafx.controls;
     requires javafx.fxml;
             
@@ -9,6 +9,5 @@ module your_package_name.chessgame {
     
     opens fr.univamu.iut.s201_chess to javafx.fxml;
     exports fr.univamu.iut.s201_chess;
-    exports fr.univamu.iut.s201_chess.chessPage;
-    opens fr.univamu.iut.s201_chess.chessPage to javafx.fxml;
+
 }
