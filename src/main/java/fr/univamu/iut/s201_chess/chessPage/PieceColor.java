@@ -1,4 +1,4 @@
-package fr.univamu.iut.s201_chess;
+package fr.univamu.iut.s201_chess.chessPage;
 
 public enum PieceColor {
     WHITE, BLACK;

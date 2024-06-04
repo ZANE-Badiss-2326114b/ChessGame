@@ -1,15 +1,10 @@
-package fr.univamu.iut.s201_chess;
+package fr.univamu.iut.s201_chess.chessPage;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-
-import static fr.univamu.iut.s201_chess.PieceColor.BLACK;
+import static fr.univamu.iut.s201_chess.chessPage.PieceColor.BLACK;
 
 public class Piece extends StackPane {
     private PieceType type;
