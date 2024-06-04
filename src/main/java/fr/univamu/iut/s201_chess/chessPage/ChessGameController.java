@@ -1,12 +1,9 @@
-package fr.univamu.iut.s201_chess;
+package fr.univamu.iut.s201_chess.chessPage;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
-import java.util.ArrayList;
 
 public class ChessGameController {
     @FXML
