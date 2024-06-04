@@ -1,15 +1,10 @@
 package fr.univamu.iut.s201_chess;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
-import javafx.scene.Group;
-import java.util.ArrayList;
-
-import static fr.univamu.iut.s201_chess.PieceColor.BLACK;
 
 public class Piece extends StackPane {
     private PieceType type;
@@ -24,58 +19,32 @@ public class Piece extends StackPane {
 
         initMove(x, y); // Utilisation de la méthode initMove pour initialiser la position
 
-        ImageView img = new ImageView();
+        //ImageView img = new ImageView();
 
 
 
 
-        if(color == PieceColor.BLACK){
+        Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
+        bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
+        bg.setStroke(Color.BLACK);
+        bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);
 
-            switch (type){
+        bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
+        bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
-                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bk.png")));
-                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bp.png")));
-                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/br.png")));
-                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bq.png")));
-                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
-                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bn.png")));
+        Text text = new Text(type.toString().substring(0, 1));
+        text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);
+        text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
+        text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
 
-            }
-        }
-        else if(color == PieceColor.WHITE){
-            switch (type){
-                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wk.png")));
-                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wp.png")));
-                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wr.png")));
-                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wq.png")));
-                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wb.png")));
-                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wn.png")));
-            }
-        }
+        //ImageView img = new ImageView();
+        //img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
 
-        img.setFitHeight(85);
-        img.setFitWidth(85);
-
-
-        //Ellipse bg = new Ellipse(ChessGame.TILE_SIZE * 0.3125, ChessGame.TILE_SIZE * 0.26);
-        //bg.setFill(color == PieceColor.WHITE ? Color.WHITE : Color.BLACK);
-        //bg.setStroke(Color.BLACK);
-        //bg.setStrokeWidth(ChessGame.TILE_SIZE * 0.03);
-
-        //bg.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
-        //bg.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
-
-//        Text text = new Text(type.toString().substring(0, 1));
-//        text.setFill(color == PieceColor.WHITE ? Color.BLACK : Color.WHITE);
-//        text.setTranslateX((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.3125 * 2) / 2);
-//        text.setTranslateY((ChessGame.TILE_SIZE - ChessGame.TILE_SIZE * 0.26 * 2) / 2);
+        //getChildren().addAll(bg, text);
 
 
 
-
-
-
-        getChildren().add(img);
+        //getChildren().add(img);
 
         setOnMousePressed(e -> {
             mouseX = e.getSceneX();
@@ -116,7 +85,6 @@ public class Piece extends StackPane {
     }
 
 
-
     public void abortMove() {
         relocate(oldX, oldY);
     }
@@ -146,9 +114,7 @@ public class Piece extends StackPane {
     }
 
     public boolean isValidMove(int newX, int newY, Tile[][] board) {
-        switch (type) {
-            case PAWN:
-                return isValidPawnMove(newX, newY, board);
+        switch (this.getType()) {
             case ROOK:
                 return isValidRookMove(newX, newY, board);
             case KNIGHT:
@@ -159,6 +125,8 @@ public class Piece extends StackPane {
                 return isValidQueenMove(newX, newY, board);
             case KING:
                 return isValidKingMove(newX, newY, board);
+            case PAWN:
+                return isValidPawnMove(newX, newY, board);
             default:
                 return false;
         }
@@ -200,6 +168,7 @@ public class Piece extends StackPane {
 
         return false;
     }
+
     private boolean isValidRookMove(int newX, int newY, Tile[][] board) {
         int currentX = (int) (oldX / ChessGame.TILE_SIZE);
         int currentY = (int) (oldY / ChessGame.TILE_SIZE);
