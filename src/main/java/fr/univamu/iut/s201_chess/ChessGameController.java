@@ -9,8 +9,6 @@ import javafx.scene.paint.Color;
 
 public class ChessGameController {
     @FXML
-    private GridPane chessBoard;
-    @FXML
     private Group tileGroup;
     @FXML
     private static Group pieceGroup;

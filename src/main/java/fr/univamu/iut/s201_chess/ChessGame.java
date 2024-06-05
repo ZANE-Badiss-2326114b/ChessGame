@@ -1,11 +1,14 @@
 package fr.univamu.iut.s201_chess;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ChessGame extends Application {
     public static final int TILE_SIZE = 100;
@@ -87,7 +90,7 @@ public class ChessGame extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Scene scene = new Scene(createContent());
         primaryStage.setScene(scene);
         primaryStage.show();
