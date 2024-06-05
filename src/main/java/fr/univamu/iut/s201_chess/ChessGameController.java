@@ -2,6 +2,7 @@ package fr.univamu.iut.s201_chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -130,5 +131,14 @@ public class ChessGameController {
         } else {
             return piece.isValidMove(newX, newY, board);
         }
+    }
+
+    public static void endGame(PieceColor winner) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText(null);
+        alert.setContentText("Game Over! " + (winner == PieceColor.WHITE ? "White" : "Black") + " wins!");
+        alert.showAndWait();
+        System.exit(0);
     }
 }

@@ -68,7 +68,13 @@ public class Piece extends StackPane {
         Tile targetTile = board[x][y];
         if (targetTile.hasPiece() && targetTile.getPiece().getColor() != this.color) {
             Piece capturedPiece = targetTile.getPiece();
-            pieceGroup.getChildren().remove(capturedPiece);
+            if(capturedPiece.getType() == PieceType.KING){
+                pieceGroup.getChildren().remove(capturedPiece);
+                ChessGameController.endGame(capturedPiece.getColor());
+            }
+            else{
+                pieceGroup.getChildren().remove(capturedPiece);
+            }
         }
 
         board[oldTileX][oldTileY].setPiece(null);
