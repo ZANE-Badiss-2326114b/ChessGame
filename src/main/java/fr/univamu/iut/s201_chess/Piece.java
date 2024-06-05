@@ -119,11 +119,9 @@ public class Piece extends StackPane {
                 return isValidKingMove(newX, newY, board);
             case PAWN:
                 return isValidPawnMove(newX, newY, board);
-            default:
-                return false;
         }
+        return false;
     }
-
     private boolean isValidPawnMove(int newX, int newY, Tile[][] board) {
         int currentX = (int) (oldX / ChessGame.TILE_SIZE);
         int currentY = (int) (oldY / ChessGame.TILE_SIZE);

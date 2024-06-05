@@ -21,6 +21,9 @@ public class ChessGame extends Application {
         root.setPrefSize(WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE);
         root.getChildren().addAll(tileGroup, pieceGroup);
 
+        ChessGameController.setBoard(board);
+        ChessGameController.setPieceGroup(pieceGroup);
+
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 Tile tile = new Tile((x + y) % 2 == 0, x, y);
@@ -69,8 +72,9 @@ public class ChessGame extends Application {
                 return;
             }
 
-            if (piece.isValidMove(newX, newY, board)) {
+            if (piece.getColor() == ChessGameController.getTurnColor() && piece.isValidMove(newX, newY, board)) {
                 piece.move(newX, newY, board, pieceGroup);
+                ChessGameController.switchTurn();
             } else {
                 piece.abortMove();
             }

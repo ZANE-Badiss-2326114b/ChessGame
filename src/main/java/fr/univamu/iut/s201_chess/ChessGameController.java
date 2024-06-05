@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class ChessGameController {
     @FXML
@@ -11,11 +12,12 @@ public class ChessGameController {
     @FXML
     private Group tileGroup;
     @FXML
-    private Group pieceGroup;
+    private static Group pieceGroup;
 
 
-    private Tile[][] board = new Tile[ChessGame.WIDTH][ChessGame.HEIGHT];
-    private Piece selectedPiece = null;
+    private static Tile[][] board = new Tile[ChessGame.WIDTH][ChessGame.HEIGHT];
+    private static Piece selectedPiece = null;
+    private static PieceColor turnColor = PieceColor.WHITE;
 
     @FXML
     public void initialize() {
@@ -54,6 +56,48 @@ public class ChessGameController {
         }
     }
 
+    public static Piece getSelectedPiece() {
+        return selectedPiece;
+    }
+
+    public static void setSelectedPiece(Piece piece) {
+        selectedPiece = piece;
+    }
+
+    public static PieceColor getTurnColor() {
+        return turnColor;
+    }
+
+    public static void switchTurn() {
+        turnColor = (turnColor == PieceColor.WHITE) ? PieceColor.BLACK : PieceColor.WHITE;
+    }
+
+    public static Tile[][] getBoard() {
+        return board;
+    }
+
+    public static void setBoard(Tile[][] board) {
+        ChessGameController.board = board;
+    }
+
+    public static Group getPieceGroup() {
+        return pieceGroup;
+    }
+
+    public static void setPieceGroup(Group pieceGroup) {
+        ChessGameController.pieceGroup = pieceGroup;
+    }
+
+    public static void updateTileColors() {
+        for (int y = 0; y < ChessGame.HEIGHT; y++) {
+            for (int x = 0; x < ChessGame.WIDTH; x++) {
+                Tile tile = board[x][y];
+                boolean light = (x + y) % 2 == 0;
+                tile.setFill(light ? Color.valueOf("#feb") : Color.valueOf("#582"));
+            }
+        }
+    }
+
     private Piece makePiece(PieceType type, PieceColor color, int x, int y) {
         Piece piece = new Piece(type, color, x, y);
         piece.setOnMouseReleased(event -> {
@@ -85,32 +129,6 @@ public class ChessGameController {
             }
         } else {
             return piece.isValidMove(newX, newY, board);
-        }
-    }
-
-
-    @FXML
-    private void handleMouseClick(MouseEvent event) {
-        int x = (int) (event.getSceneX() / ChessGame.TILE_SIZE);
-        int y = (int) (event.getSceneY() / ChessGame.TILE_SIZE);
-
-        if (selectedPiece != null) {
-            Tile targetTile = board[x][y];
-            if (targetTile != null && targetTile != selectedPiece.getTile()) {
-                if (isValidMove(selectedPiece, x, y)) {
-                    Tile oldTile = selectedPiece.getTile();
-                    oldTile.setPiece(null);
-                    selectedPiece.move(x, y, board, pieceGroup);
-                    targetTile.setPiece(selectedPiece);
-                    selectedPiece.setTile(targetTile);
-                }
-                selectedPiece = null;
-            }
-        } else {
-            Tile tile = board[x][y];
-            if (tile.hasPiece()) {
-                selectedPiece = tile.getPiece();
-            }
         }
     }
 }
