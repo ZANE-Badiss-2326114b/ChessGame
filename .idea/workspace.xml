@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +27,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -110,7 +113,7 @@
       <workItem from="1717568827678" duration="2495000" />
       <workItem from="1717657719734" duration="3464000" />
       <workItem from="1717667310099" duration="1734000" />
-      <workItem from="1717673766586" duration="331000" />
+      <workItem from="1717673766586" duration="999000" />
     </task>
     <task id="LOCAL-00001" summary="projet avec début image">
       <created>1717504141577</created>
@@ -141,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717661729959</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Badiss probleme a regler">
+      <option name="closed" value="true" />
+      <created>1717674200064</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717674200064</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

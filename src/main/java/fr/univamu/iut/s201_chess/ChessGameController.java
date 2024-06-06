@@ -13,35 +13,7 @@ public class ChessGameController {
     private static Piece selectedPiece = null;
     private static PieceColor turnColor = PieceColor.WHITE;
 
-    public void initialize() {
-        for (int y = 0; y < ChessGame.HEIGHT; y++) {
-            for (int x = 0; x < ChessGame.WIDTH; x++) {
-                Tile tile = new Tile((x + y) % 2 == 0, x, y);
-                board[x][y] = tile;
-                Piece piece = null;
 
-                if (y == 1) {
-                    piece = makePiece(PieceType.PAWN, PieceColor.BLACK, x, y);
-                } else if (y == 6) {
-                    piece = makePiece(PieceType.PAWN, PieceColor.WHITE, x, y);
-                } else if (y == 0 || y == 7) {
-                    PieceColor color = (y == 0) ? PieceColor.BLACK : PieceColor.WHITE;
-                    if (x == 0 || x == 7) {
-                        piece = makePiece(PieceType.ROOK, color, x, y);
-                    } else if (x == 1 || x == 6) {
-                        piece = makePiece(PieceType.KNIGHT, color, x, y);
-                    } else if (x == 2 || x == 5) {
-                        piece = makePiece(PieceType.BISHOP, color, x, y);
-                    } else if (x == 3) {
-                        piece = makePiece(PieceType.QUEEN, color, x, y);
-                    } else if (x == 4) {
-                        piece = makePiece(PieceType.KING, color, x, y);
-                    }
-                }
-
-            }
-        }
-    }
 
     public static Piece getSelectedPiece() {
         return selectedPiece;
@@ -117,10 +89,17 @@ public class ChessGameController {
     }
 
     public static void endGame(PieceColor winner) {
+        String color;
+        if (winner.toString() == "BLACK"){
+            color = "Blancs";
+        }
+        else{
+            color = "Noirs";
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Game Over");
+        alert.setTitle("Partie finie !");
         alert.setHeaderText(null);
-        alert.setContentText("Game Over! " + (winner == PieceColor.WHITE ? "White" : "Black") + " wins!");
+        alert.setContentText("Partie finie ! Ce sont les " + color + " qui gagnent !");
         alert.showAndWait();
         System.exit(0);
     }
