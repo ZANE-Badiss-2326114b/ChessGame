@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +118,7 @@
       <workItem from="1717568827678" duration="2495000" />
       <workItem from="1717657719734" duration="3464000" />
       <workItem from="1717667310099" duration="1734000" />
-      <workItem from="1717673766586" duration="999000" />
+      <workItem from="1717673766586" duration="8199000" />
     </task>
     <task id="LOCAL-00001" summary="projet avec début image">
       <created>1717504141577</created>
@@ -152,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717674200064</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="jeu fonctionnel sans code dupliquer">
+      <option name="closed" value="true" />
+      <created>1717675010411</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717675010411</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +199,7 @@
     <MESSAGE value="Conflit réglé(peut-être)" />
     <MESSAGE value="jeu en tour par tour" />
     <MESSAGE value="Badiss probleme a regler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Badiss probleme a regler" />
+    <MESSAGE value="jeu fonctionnel sans code dupliquer" />
+    <option name="LAST_COMMIT_MESSAGE" value="jeu fonctionnel sans code dupliquer" />
   </component>
 </project>
