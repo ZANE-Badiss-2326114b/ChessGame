@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.Group?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="fr.univamu.iut.s201_chess.ChessBoardController">
+
+    <HBox spacing="20" >
+        <!-- Left side with player info and game controls -->
+        <VBox spacing="20">
+            <HBox spacing="10">
+                <Label text="Adversaire" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                <Label fx:id="opponentName" text="Guest123456" />
+            </HBox>
+
+            <Label fx:id="opponentTimer" text="10:00" style="-fx-font-size: 24px;" />
+
+            <Pane fx:id="chessBoard" prefWidth="800" prefHeight="800">
+                <Group fx:id="tileGroup"/>
+                <Group fx:id="pieceGroup"/>
+            </Pane>
+
+            <Label fx:id="playerTimer" text="10:00" style="-fx-font-size: 24px;" />
+
+            <HBox spacing="10">
+                <Label text="Guest263805585" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                <Label fx:id="playerName" text="(400)" />
+            </HBox>
+        </VBox>
+
+        <!-- Right side with game controls and tournament info -->
+        <VBox spacing="20" prefWidth="200">
+            <Button text="Nouvelle partie" onAction="#handleNewGame"/>
+            <VBox spacing="10">
+                <Label text="Parties" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Button text="10 min" onAction="#handleChangeGameDuration"/>
+            </VBox>
+            <Button text="Jouer" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white;" onAction="#handleStartGame"/>
+            <VBox spacing="10">
+                <Label text="Tournois" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Button text="Tournois" onAction="#handleTournaments"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <!-- Bottom bar with additional info -->
+
+</VBox>

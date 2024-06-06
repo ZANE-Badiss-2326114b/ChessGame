@@ -7,8 +7,6 @@ import javafx.scene.paint.Color;
 public class ChessGameController {
 
     private static Group pieceGroup;
-
-
     private static Tile[][] board = new Tile[ChessGame.WIDTH][ChessGame.HEIGHT];
     private static Piece selectedPiece = null;
     private static PieceColor turnColor = PieceColor.WHITE;
