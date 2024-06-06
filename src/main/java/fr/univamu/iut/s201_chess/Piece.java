@@ -20,21 +20,21 @@ public class Piece extends StackPane {
         ImageView img = new ImageView();
         if (color == PieceColor.BLACK) {
             switch (type) {
-                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bk.png")));
-                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bp.png")));
-                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/br.png")));
-                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bq.png")));
-                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bb.png")));
-                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/img/blackPieces/bn.png")));
+                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/blackPieces/bk.png")));
+                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/blackPieces/bp.png")));
+                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/blackPieces/br.png")));
+                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/blackPieces/bq.png")));
+                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/blackPieces/bb.png")));
+                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/blackPieces/bn.png")));
             }
         } else if (color == PieceColor.WHITE) {
             switch (type) {
-                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wk.png")));
-                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wp.png")));
-                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wr.png")));
-                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wq.png")));
-                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wb.png")));
-                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/img/whitePieces/wn.png")));
+                case KING -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wk.png")));
+                case PAWN -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wp.png")));
+                case ROOK -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wr.png")));
+                case QUEEN -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wq.png")));
+                case BISHOP -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wb.png")));
+                case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wn.png")));
             }
         }
         img.setFitHeight(85);
