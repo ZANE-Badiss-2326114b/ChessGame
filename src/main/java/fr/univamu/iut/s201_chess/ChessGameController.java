@@ -1,16 +1,11 @@
 package fr.univamu.iut.s201_chess;
 
-import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class ChessGameController {
-    @FXML
-    private Group tileGroup;
-    @FXML
+
     private static Group pieceGroup;
 
 
@@ -18,13 +13,11 @@ public class ChessGameController {
     private static Piece selectedPiece = null;
     private static PieceColor turnColor = PieceColor.WHITE;
 
-    @FXML
     public void initialize() {
         for (int y = 0; y < ChessGame.HEIGHT; y++) {
             for (int x = 0; x < ChessGame.WIDTH; x++) {
                 Tile tile = new Tile((x + y) % 2 == 0, x, y);
                 board[x][y] = tile;
-                tileGroup.getChildren().add(tile);
                 Piece piece = null;
 
                 if (y == 1) {
@@ -46,11 +39,6 @@ public class ChessGameController {
                     }
                 }
 
-                if (piece != null) {
-                    tile.setPiece(piece);
-                    piece.setTile(tile);
-                    pieceGroup.getChildren().add(piece);
-                }
             }
         }
     }
@@ -75,9 +63,6 @@ public class ChessGameController {
         return board;
     }
 
-    public static void setBoard(Tile[][] board) {
-        ChessGameController.board = board;
-    }
 
     public static Group getPieceGroup() {
         return pieceGroup;

@@ -1,14 +1,11 @@
 package fr.univamu.iut.s201_chess;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class ChessGame extends Application {
     public static final int TILE_SIZE = 100;
@@ -24,7 +21,6 @@ public class ChessGame extends Application {
         root.setPrefSize(WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE);
         root.getChildren().addAll(tileGroup, pieceGroup);
 
-        ChessGameController.setBoard(board);
         ChessGameController.setPieceGroup(pieceGroup);
 
         for (int y = 0; y < HEIGHT; y++) {
@@ -90,7 +86,7 @@ public class ChessGame extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) {
         Scene scene = new Scene(createContent());
         primaryStage.setScene(scene);
         primaryStage.show();

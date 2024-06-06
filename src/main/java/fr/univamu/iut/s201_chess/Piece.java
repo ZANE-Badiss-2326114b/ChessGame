@@ -10,7 +10,6 @@ public class Piece extends StackPane {
     private PieceColor color;
     private double mouseX, mouseY;
     private double oldX, oldY;
-    private Tile tile;
 
     public Piece(PieceType type, PieceColor color, int x, int y) {
         this.type = type;
@@ -95,13 +94,6 @@ public class Piece extends StackPane {
         return color;
     }
 
-    public Tile getTile() {
-        return tile;
-    }
-
-    public void setTile(Tile tile) {
-        this.tile = tile;
-    }
 
     public double getOldX() {
         return oldX;
