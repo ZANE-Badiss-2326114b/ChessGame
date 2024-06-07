@@ -95,13 +95,6 @@ public class Piece extends StackPane {
     }
 
 
-    public double getOldX() {
-        return oldX;
-    }
-
-    public double getOldY() {
-        return oldY;
-    }
 
     public boolean isValidMove(int newX, int newY, Tile[][] board) {
         switch (this.getType()) {

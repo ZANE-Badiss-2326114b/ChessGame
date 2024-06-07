@@ -20,7 +20,6 @@
         <padding>
             <Insets top="15" right="12" bottom="15" left="12"/>
         </padding>
-        <Label fx:id="lblTest" text="Jouer en 1v1" />
         <Button text="Jouer en 1c1 (local)" style="-fx-background-color: #4CAF50; -fx-text-fill: white;-fx-background-radius: 15;-fx-font-size: 20;" minHeight="100" minWidth="500"/>
         <Button text="Jouer contre l'ordinateur" style="-fx-background-color: #555555; -fx-text-fill: white;" />
     </HBox>

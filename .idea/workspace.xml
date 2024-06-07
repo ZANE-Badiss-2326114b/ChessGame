@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/HomePage/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/HomePage/HomePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +30,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" root0="SKIP_HIGHLIGHTING" />
@@ -115,6 +117,7 @@
       <workItem from="1717657719734" duration="3464000" />
       <workItem from="1717667310099" duration="1734000" />
       <workItem from="1717673766586" duration="8199000" />
+      <workItem from="1717741218570" duration="6703000" />
     </task>
     <task id="LOCAL-00001" summary="projet avec début image">
       <created>1717504141577</created>
