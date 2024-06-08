@@ -39,7 +39,7 @@ public class TypeNameController {
 
 
     public void  getPlayersNickname() {
-        String player1 = player1Name.getText();
+        String player1 = player1Name.getText() ;
         String player2 = player2Name.getText();
         try {
             File myObj = new File("Players.txt");

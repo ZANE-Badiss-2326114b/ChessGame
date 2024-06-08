@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
+
 public class ChessGameController {
 
     private static Group pieceGroup;

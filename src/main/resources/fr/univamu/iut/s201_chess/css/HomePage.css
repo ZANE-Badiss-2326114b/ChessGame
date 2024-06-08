@@ -1,3 +1,31 @@
 .button {
     -fx-font-family: 'Montserrat';
 }
+.menu-bar {
+    -fx-background-color: #1c1c1c;
+    -fx-text-fill: white;
+}
+.menu-bar .menu {
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+.clickable-label {
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+.combo-box {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+}
+.play-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}
+.tournament-button {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}

@@ -38,12 +38,12 @@
                 <Label text="Joueurs" textAlignment="RIGHT"  style="-fx-text-fill: white; -fx-cursor: hand;"/>
             </HBox>
             <VBox>
-                <ComboBox fx:id="gameDurationComboBox" style="-fx-background-color: #333333; -fx-text-fill: white;"/>
+                <ComboBox fx:id="gameDurationComboBox"  styleClass="combo-box"/>
 
             </VBox>
-            <Button text="Jouer" onAction="#handleStartGame" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
-            <VBox>
-                <Button text="Tournois" onAction="#handleTournaments" style="-fx-background-color: #333333; -fx-text-fill: white;"/>
+            <Button text="Jouer" onAction="#handleStartGame"  styleClass="play-button"/>
+            <VBox >
+                <Button text="Tournois" onAction="#handleTournaments" styleClass="tournament-button" />
             </VBox>
         </VBox>
     </HBox>
