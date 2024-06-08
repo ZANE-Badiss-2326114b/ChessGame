@@ -5,16 +5,15 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.Group?>
 
-<?import com.sun.javafx.scene.control.ContextMenuContent.MenuBox?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="fr.univamu.iut.s201_chess.ChessBoardController" >
+      fx:controller="fr.univamu.iut.s201_chess.ChessBoardController">
 
-    <HBox spacing="20">
+    <HBox spacing="20" >
         <!-- Left side with player info and game controls -->
         <VBox spacing="20">
             <HBox spacing="10">
                 <Label text="Adversaire" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
-                <Label fx:id="opponentName" text="Mechant" />
+                <Label fx:id="opponentName" text="Guest123456" />
             </HBox>
 
             <Label fx:id="opponentTimer" text="10:00" style="-fx-font-size: 24px;" />
@@ -27,8 +26,8 @@
             <Label fx:id="playerTimer" text="10:00" style="-fx-font-size: 24px;" />
 
             <HBox spacing="10">
-                <Label text="Badiss" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
-                <Label fx:id="playerName" text="" />
+                <Label text="Guest263805585" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                <Label fx:id="playerName" text="(400)" />
             </HBox>
         </VBox>
 
@@ -37,9 +36,9 @@
             <Button text="Nouvelle partie" onAction="#handleNewGame"/>
             <VBox spacing="10">
                 <Label text="Parties" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                <ComboBox fx:id="gameDurationComboBox"/>
+                <Button text="10 min" onAction="#handleChangeGameDuration"/>
             </VBox>
-            <Button text="Jouer" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white;" onAction="#handleStartGame"/>
+            <Button text="Jouer" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #ebecd0; -fx-text-fill: white;" onAction="#handleStartGame"/>
             <VBox spacing="10">
                 <Label text="Tournois" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
                 <Button text="Tournois" onAction="#handleTournaments"/>
