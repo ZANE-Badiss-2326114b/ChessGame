@@ -28,6 +28,9 @@ public class ChessGameController {
     public static void switchTurn() {
         turnColor = (turnColor == PieceColor.WHITE) ? PieceColor.BLACK : PieceColor.WHITE;
     }
+    public static void restartgame() {
+        turnColor = PieceColor.WHITE;
+    }
 
     public static Tile[][] getBoard() {
         return board;

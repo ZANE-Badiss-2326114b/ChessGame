@@ -37,8 +37,8 @@ public class Piece extends StackPane {
                 case KNIGHT -> img.setImage(new Image(getClass().getResourceAsStream("/fr/univamu/iut/s201_chess/img/whitePieces/wn.png")));
             }
         }
-        img.setFitHeight(85);
-        img.setFitWidth(85);
+        img.setFitHeight(60);
+        img.setFitWidth(60);
         getChildren().add(img);
 
         setOnMousePressed(e -> {
