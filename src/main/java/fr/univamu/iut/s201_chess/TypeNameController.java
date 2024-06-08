@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 import java.util.function.IntToLongFunction;
@@ -39,33 +40,47 @@ public class TypeNameController {
 
 
     public void  getPlayersNickname() {
-        String player1 = player1Name.getText();
-        String player2 = player2Name.getText();
-        try {
-            File myObj = new File("Players.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
 
+
+        String player1;
+        String player2;
         Random r = new Random();
 
-        if(player1.isEmpty()){
+        if(player1Name == null || player1Name.getText().isEmpty()){
             player1 = "Guest" + r.nextLong((9999999999L - 1000000000L)-1);
         }
-        if(player2.isEmpty()){
+        else{
+            player1 = player1Name.getText();
+        }
+        if(player1Name == null || player1Name.getText().isEmpty()){
             player2 = "Guest" + r.nextLong((9999999999L - 1000000000L)-1);
             while(player1.equals(player2)){
                 player2 = "Guest" + r.nextLong((9999999999L - 1000000000L)-1);
 
             }
         }
+        else {
+            player2 = player2Name.getText();
+        }
 
+        File myObj = new File("Players.txt");
+        try {
+            myObj.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("Players.txt");
+        writer.write(player1 + "\n" + player2);
+        writer.close();
+        System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     @FXML

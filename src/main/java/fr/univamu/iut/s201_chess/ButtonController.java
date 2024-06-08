@@ -1,9 +1,12 @@
 package fr.univamu.iut.s201_chess;
 
+
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import fr.univamu.iut.s201_chess.TypeNameController;
 
 import java.io.IOException;
 
@@ -34,7 +37,11 @@ public class ButtonController {
     public void initTypeName(Button launchGame, Button back) {
 
         launchGame.setOnMouseClicked(actionEvent -> {
+            TypeNameController typeNameController = new TypeNameController();
+            typeNameController.getPlayersNickname();
             changeScene("ChessGame.fxml", launchGame);
+
+
         });
         back.setOnMouseClicked(actionEvent -> {
             changeScene("Homepage/HomePage.fxml", back);

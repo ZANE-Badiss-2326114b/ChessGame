@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ButtonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/TypeName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/TypeNameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/TypeName.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="Navigation entre menu et jeu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/HomePage/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/HomePage/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/HomePage/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/HomePage/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/HomePage/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/HomePage/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ButtonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ButtonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/TypeNameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/TypeNameController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +35,22 @@
     &quot;assignee&quot;: &quot;BLANCHET-Edson-2326023b&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/ZANE-Badiss-2326114b/ChessGame.git&quot;,
-    &quot;accountId&quot;: &quot;f5d69d1a-b044-4463-82de-fb2b8050fc9e&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ZANE-Badiss-2326114b/ChessGame.git",
+    "accountId": "f5d69d1a-b044-4463-82de-fb2b8050fc9e"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "ZANE-Badiss-2326114b",
+    "repository": "ChessGame"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -81,7 +81,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Edson",
+    "git-widget-placeholder": "#2 on Edson",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -214,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717675010411</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Navigation entre menu et jeu">
+      <option name="closed" value="true" />
+      <created>1717857378983</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717857378983</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +239,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Edson" />
+                        <option value="origin/Edson" />
                       </list>
                     </value>
                   </entry>
@@ -249,6 +257,7 @@
     <MESSAGE value="jeu en tour par tour" />
     <MESSAGE value="Badiss probleme a regler" />
     <MESSAGE value="jeu fonctionnel sans code dupliquer" />
-    <option name="LAST_COMMIT_MESSAGE" value="jeu fonctionnel sans code dupliquer" />
+    <MESSAGE value="Navigation entre menu et jeu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Navigation entre menu et jeu" />
   </component>
 </project>
