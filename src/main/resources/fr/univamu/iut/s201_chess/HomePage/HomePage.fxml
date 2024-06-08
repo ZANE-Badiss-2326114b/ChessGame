@@ -9,7 +9,7 @@
 
 <?import java.net.URL?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univamu.iut.s201_chess.HomePage.HomePageController" spacing="20" style="-fx-background-color: #2B2B2B;" alignment="center">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univamu.iut.s201_chess.HomePage.HomePageController" spacing="20" stylesheets="@../css/HomePage.css" style="-fx-background-color: #2B2B2B;" alignment="center">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -20,15 +20,11 @@
         <padding>
             <Insets top="15" right="12" bottom="15" left="12"/>
         </padding>
-        <Button text="Jouer en 1c1 (local)" style="-fx-background-color: #4CAF50; -fx-text-fill: white;-fx-background-radius: 15;-fx-font-size: 20;" minHeight="100" minWidth="500"/>
-        <Button text="Jouer contre l'ordinateur" style="-fx-background-color: #555555; -fx-text-fill: white;" />
+        <Button fx:id="B1v1" styleClass="ButtonChangeWindow" text="Jouer en 1c1 (local)" style="-fx-background-color: #4CAF50; -fx-text-fill: white;-fx-background-radius: 15;-fx-font-size: 20;" minHeight="100" minWidth="500" onAction="#loadPage"/>
+        <Button fx:id="Bc" styleClass="ButtonChangeWindow" text="Jouer contre l'ordinateur" style="-fx-background-color: #555555; -fx-text-fill: white;-fx-background-radius: 15;-fx-font-size: 20;" minHeight="100" minWidth="500" onAction="#loadPage"/>
     </HBox>
 
 
-    <HBox spacing="10" alignment="center">
-        <Button text="Créer un compte" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
-        <Button text="Se connecter" style="-fx-background-color: #555555; -fx-text-fill: white;" />
-    </HBox>
     <Button text="Lancer Tournoi" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
 
 </VBox>

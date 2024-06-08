@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univamu.iut.s201_chess.TypeNameController" spacing="20" style="-fx-background-color: #2B2B2B;" alignment="center">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <ImageView fx:id="logo" fitHeight="100" fitWidth="200" />
+
+    <Label text="Jouez aux échecs en ligne sur le site n°1 !" style="-fx-font-size: 24px; -fx-text-fill: #F5F5F5;" />
+
+    <HBox spacing="10" alignment="center">
+        <VBox spacing="10" alignment="center">
+            <Label text="Pseudo du Joueur 1 :" style="-fx-text-fill: #F5F5F5;" />
+            <TextField fx:id="player1Name" promptText="Entrez le pseudo du joueur 1" style="-fx-background-color: #333333; -fx-text-fill: #F5F5F5;"/>
+        </VBox>
+        <VBox spacing="10" alignment="center">
+            <Label text="Pseudo du Joueur 2 :" style="-fx-text-fill: #F5F5F5;" />
+            <TextField fx:id="player2Name" promptText="Entrez le pseudo du joueur 2" style="-fx-background-color: #333333; -fx-text-fill: #F5F5F5;"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="10" style="-fx-background-color: #333;" alignment="center">
+        <padding>
+            <Insets top="15" right="12" bottom="15" left="12"/>
+        </padding>
+        <Button fx:id="launchGame" text="Jouer" style="-fx-background-color: #4CAF50; -fx-text-fill: white;-fx-background-radius: 15;-fx-font-size: 25;" minHeight="50" minWidth="200" onAction="#loadPage"/>
+        <Button fx:id="back" text="Back" style="-fx-background-color: #555555; -fx-text-fill: white;-fx-background-radius: 15;-fx-font-size: 25;" minHeight="50" minWidth="200" onAction="#loadPage" />
+    </HBox>
+</VBox>
