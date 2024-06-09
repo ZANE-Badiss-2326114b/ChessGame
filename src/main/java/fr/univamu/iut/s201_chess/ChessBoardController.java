@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 import javafx.scene.control.ComboBox;
 
+import static fr.univamu.iut.s201_chess.PieceColor.BLACK;
+import static fr.univamu.iut.s201_chess.PieceColor.WHITE;
+
 public class ChessBoardController {
 
     @FXML
@@ -54,11 +57,11 @@ public class ChessBoardController {
 
                 Piece piece = null;
                 if (y == 1) {
-                    piece = makePiece(PieceType.PAWN, PieceColor.BLACK, x, y);
+                    piece = makePiece(PieceType.PAWN, BLACK, x, y);
                 } else if (y == 6) {
-                    piece = makePiece(PieceType.PAWN, PieceColor.WHITE, x, y);
+                    piece = makePiece(PieceType.PAWN, WHITE, x, y);
                 } else if (y == 0 || y == 7) {
-                    PieceColor color = (y == 0) ? PieceColor.BLACK : PieceColor.WHITE;
+                    PieceColor color = (y == 0) ? BLACK : WHITE;
 
                     if (x == 0 || x == 7) {
                         piece = makePiece(PieceType.ROOK, color, x, y);
@@ -112,9 +115,11 @@ public class ChessBoardController {
             opponentTimeSeconds--;
             updateTimerLabel(opponentTimer, opponentTimeSeconds);
             if (opponentTimeSeconds <= 0) {
-                ChessGameController.moveRandomPiece(PieceColor.BLACK);
-                opponentTimeSeconds = getSelectedDuration(); // Reset the timer
-                ChessGameController.switchTurn();
+               // ChessGameController.moveRandomPiece(PieceColor.BLACK);
+               // opponentTimeSeconds = getSelectedDuration(); // Reset the timer
+               // ChessGameController.switchTurn();
+                ChessGameController.endGame(WHITE);
+
             }
         }));
         opponentTimeline.setCycleCount(Animation.INDEFINITE);
@@ -123,17 +128,17 @@ public class ChessBoardController {
             playerTimeSeconds--;
             updateTimerLabel(playerTimer, playerTimeSeconds);
             if (playerTimeSeconds <= 0) {
-                ChessGameController.moveRandomPiece(PieceColor.WHITE);
-                playerTimeSeconds = getSelectedDuration();// Reset the timer
-                ChessGameController.switchTurn();
-
+               // ChessGameController.moveRandomPiece(PieceColor.WHITE);
+               // playerTimeSeconds = getSelectedDuration();// Reset the timer
+               // ChessGameController.switchTurn();
+                ChessGameController.endGame(BLACK);
             }
         }));
         playerTimeline.setCycleCount(Animation.INDEFINITE);
     }
 
     private void switchTimers() {
-        if (ChessGameController.getTurnColor() == PieceColor.WHITE) {
+        if (ChessGameController.getTurnColor() == WHITE) {
             opponentTimeline.pause();
             playerTimeline.play();
         } else {
