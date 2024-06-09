@@ -1,4 +1,9 @@
-.button {
+@font-face {
+    font-family: 'Montserrat';
+    src: ur
+}
+
+.root {
     -fx-font-family: 'Montserrat';
 }
 .menu-bar {

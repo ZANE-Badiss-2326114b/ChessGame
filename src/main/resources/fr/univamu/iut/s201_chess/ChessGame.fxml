@@ -3,17 +3,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.Group?>
-
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <?import javafx.scene.image.ImageView?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="fr.univamu.iut.s201_chess.ChessBoardController" stylesheets="@css/HomePage.css">
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@css/HomePage.css"
+      fx:controller="fr.univamu.iut.s201_chess.ChessBoardController" >
     <HBox >
         <!-- Left side with player info and game controls -->
         <VBox >
             <HBox  style="-fx-background-color: #333333; -fx-padding: 10px;">
-                <Label text="Adversaire" alignment="CENTER_LEFT" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Label text="Adversaire" textAlignment="LEFT" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Label fx:id="player2" text="" style="-fx-text-fill: white;" />
+
                 <Label fx:id="opponentTimer" text="10:00"  textAlignment="RIGHT" style="-fx-font-size: 24px; -fx-text-fill: white;" />
             </HBox>
             <Pane fx:id="chessBoard" prefWidth="480" prefHeight="480" >
@@ -22,7 +24,7 @@
             </Pane>
             <HBox  style="-fx-background-color: #333333; -fx-padding: 10px;">
                 <Label text="Joueur" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;" />
-                <Label fx:id="playerName" text="" style="-fx-text-fill: white;" />
+                <Label fx:id="player1" text="" style="-fx-text-fill: white;" />
                 <Label fx:id="playerTimer" text="10:00" style="-fx-font-size: 24px; -fx-text-fill: white;" />
             </HBox>
         </VBox>

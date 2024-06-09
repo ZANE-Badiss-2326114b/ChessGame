@@ -4,6 +4,9 @@ import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class ChessGameController {
 
@@ -12,7 +15,44 @@ public class ChessGameController {
     private static Piece selectedPiece = null;
     private static PieceColor turnColor = PieceColor.WHITE;
 
+    public static Piece getRandomPiece(PieceColor color) {
+        List<Piece> pieces = new ArrayList<>();
+        for (int y = 0; y < ChessGame.HEIGHT; y++) {
+            for (int x = 0; x < ChessGame.WIDTH; x++) {
+                Tile tile = board[x][y];
+                if (tile.hasPiece() && tile.getPiece().getColor() == color) {
+                    pieces.add(tile.getPiece());
+                }
+            }
+        }
+        if (pieces.isEmpty()) {
+            return null;
+        }
+        Random random = new Random();
+        return pieces.get(random.nextInt(pieces.size()));
+    }
 
+    public static void moveRandomPiece(PieceColor color) {
+        Piece piece = getRandomPiece(color);
+        if (piece == null) {
+            return;
+        }
+
+        List<int[]> validMoves = new ArrayList<>();
+        for (int y = 0; y < ChessGame.HEIGHT; y++) {
+            for (int x = 0; x < ChessGame.WIDTH; x++) {
+                if (piece.isValidMove(x, y, board)) {
+                    validMoves.add(new int[]{x, y});
+                }
+            }
+        }
+
+        if (!validMoves.isEmpty()) {
+            Random random = new Random();
+            int[] move = validMoves.get(random.nextInt(validMoves.size()));
+            piece.move(move[0], move[1], board, pieceGroup);
+        }
+    }
 
     public static Piece getSelectedPiece() {
         return selectedPiece;
@@ -29,14 +69,14 @@ public class ChessGameController {
     public static void switchTurn() {
         turnColor = (turnColor == PieceColor.WHITE) ? PieceColor.BLACK : PieceColor.WHITE;
     }
-    public static void restartgame() {
+
+    public static void restartGame() {
         turnColor = PieceColor.WHITE;
     }
 
     public static Tile[][] getBoard() {
         return board;
     }
-
 
     public static Group getPieceGroup() {
         return pieceGroup;
@@ -55,14 +95,9 @@ public class ChessGameController {
             }
         }
     }
+
     public static void endGame(PieceColor winner) {
-        String color;
-        if (winner.toString() == "BLACK"){
-            color = "Blancs";
-        }
-        else{
-            color = "Noirs";
-        }
+        String color = (winner == PieceColor.WHITE) ? "Noirs" : "Blancs";
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Partie finie !");
         alert.setHeaderText(null);

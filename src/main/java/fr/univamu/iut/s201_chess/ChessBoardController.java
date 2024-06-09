@@ -6,7 +6,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.scene.control.ComboBox;
 
@@ -40,7 +39,7 @@ public class ChessBoardController {
     }
 
     private void initializeComboBox() {
-        gameDurationComboBox.getItems().addAll( "3 min", "5 min", "10 min", "15 min", "20 min");
+        gameDurationComboBox.getItems().addAll("1 min" ,"3 min", "5 min", "10 min", "15 min" );
         gameDurationComboBox.setValue("10 min"); // Default duration
     }
 
@@ -113,7 +112,9 @@ public class ChessBoardController {
             opponentTimeSeconds--;
             updateTimerLabel(opponentTimer, opponentTimeSeconds);
             if (opponentTimeSeconds <= 0) {
-                endGame(PieceColor.WHITE);
+                ChessGameController.moveRandomPiece(PieceColor.BLACK);
+                opponentTimeSeconds = getSelectedDuration(); // Reset the timer
+                ChessGameController.switchTurn();
             }
         }));
         opponentTimeline.setCycleCount(Animation.INDEFINITE);
@@ -122,7 +123,10 @@ public class ChessBoardController {
             playerTimeSeconds--;
             updateTimerLabel(playerTimer, playerTimeSeconds);
             if (playerTimeSeconds <= 0) {
-                endGame(PieceColor.BLACK);
+                ChessGameController.moveRandomPiece(PieceColor.WHITE);
+                playerTimeSeconds = getSelectedDuration();// Reset the timer
+                ChessGameController.switchTurn();
+
             }
         }));
         playerTimeline.setCycleCount(Animation.INDEFINITE);
@@ -144,19 +148,11 @@ public class ChessBoardController {
         label.setText(String.format("%02d:%02d", minutes, seconds));
     }
 
-    private void endGame(PieceColor winner) {
-        ChessGameController.endGame(winner);
-        opponentTimeline.stop();
-        playerTimeline.stop();
-    }
-
-
-
     private void resetBoard() {
         tileGroup.getChildren().clear();
         pieceGroup.getChildren().clear();
         initializeBoard();
-        ChessGameController.restartgame();
+        ChessGameController.restartGame();
     }
 
     private void resetTimers() {
@@ -173,6 +169,8 @@ public class ChessBoardController {
     private int getSelectedDuration() {
         String selected = gameDurationComboBox.getValue();
         switch (selected) {
+            case "1 min":
+                return 10;
             case "3 min":
                 return 180;
             case "5 min":
@@ -187,8 +185,6 @@ public class ChessBoardController {
                 return 600; // Default to 10 minutes if not recognized
         }
     }
-
-
 
     @FXML
     private void handleStartGame() {
@@ -205,3 +201,6 @@ public class ChessBoardController {
 
 
 }
+
+
+

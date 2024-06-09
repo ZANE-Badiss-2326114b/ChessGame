@@ -199,6 +199,8 @@ public class Piece extends StackPane {
         int deltaX = Math.abs(newX - currentX);
         int deltaY = Math.abs(newY - currentY);
 
+
+
         if (deltaX != deltaY) {
             return false;
         }
