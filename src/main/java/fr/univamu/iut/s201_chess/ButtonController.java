@@ -27,7 +27,7 @@ public class ButtonController {
             changeScene("TypeName.fxml", B1v1);
         });
         Bc.setOnMouseClicked(actionEvent -> {
-            changeScene("TypeName.fxml", Bc);
+            changeScene("ChessBot.fxml", Bc);
         });
     }
 

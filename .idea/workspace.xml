@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="interface3.0 mouv">
+    <list default="true" id="9801fcea-3a25-4fa0-a050-0ad8fa319eeb" name="Changes" comment="jeu qui marche">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Bot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBotController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGameControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/TileBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessBot.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ButtonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ButtonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/Move.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univamu/iut/s201_chess/ChessGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fr/univamu/iut/s201_chess/ChessGame.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +96,11 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "DTD"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -101,7 +115,7 @@
       <recent name="C:\Users\edsol\IdeaProjects\ChessGame\src\main\java\fr\univamu\iut\s201_chess\HomePage" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.fr.univamu.iut.s201_chess.ChessGame">
+  <component name="RunManager" selected="Application.HomePage">
     <configuration name="ChessGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="your_package_name.chessgame.ChessGame" />
       <module name="ChessGame" />
@@ -169,8 +183,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.fr.univamu.iut.s201_chess.ChessGame" />
         <item itemvalue="Application.HomePage" />
+        <item itemvalue="Application.fr.univamu.iut.s201_chess.ChessGame" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.TypeName" />
         <item itemvalue="Application.ChessGame" />
@@ -201,7 +215,7 @@
       <workItem from="1717673766586" duration="8199000" />
       <workItem from="1717741218570" duration="6703000" />
       <workItem from="1717860505804" duration="24375000" />
-      <workItem from="1717935125633" duration="17880000" />
+      <workItem from="1717935125633" duration="23368000" />
     </task>
     <task id="LOCAL-00001" summary="projet avec début image">
       <created>1717504141577</created>
@@ -272,7 +286,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717946060140</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="jeu qui marche">
+      <option name="closed" value="true" />
+      <created>1717955602328</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717955602328</updated>
+    </task>
+    <task id="LOCAL-00011" summary="jeu qui marche">
+      <option name="closed" value="true" />
+      <created>1717955853745</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717955853745</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +319,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Edson" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -310,6 +340,7 @@
     <MESSAGE value="interface" />
     <MESSAGE value="interface2.0" />
     <MESSAGE value="interface3.0 mouv" />
-    <option name="LAST_COMMIT_MESSAGE" value="interface3.0 mouv" />
+    <MESSAGE value="jeu qui marche" />
+    <option name="LAST_COMMIT_MESSAGE" value="jeu qui marche" />
   </component>
 </project>

@@ -7,7 +7,7 @@
 <?import java.lang.String?>
 <?import javafx.scene.image.ImageView?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@css/HomePage.css" fx:controller="fr.univamu.iut.s201_chess.ChessBoardController" >
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@css/HomePage.css" fx:controller="fr.univamu.iut.s201_chess.ChessBotController" >
     <HBox >
         <!-- Left side with player info and game controls -->
         <VBox >
@@ -41,7 +41,8 @@
 
             </VBox>
             <Button text="Jouer" onAction="#handleStartGame"  styleClass="play-button"/>
-
+            <VBox >
+            </VBox>
         </VBox>
     </HBox>
 </VBox>

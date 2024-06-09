@@ -9,10 +9,11 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 import javafx.scene.control.ComboBox;
 
+import static fr.univamu.iut.s201_chess.ChessBot.endGame;
 import static fr.univamu.iut.s201_chess.PieceColor.BLACK;
 import static fr.univamu.iut.s201_chess.PieceColor.WHITE;
 
-public class ChessBoardController {
+public class ChessBotController {
 
     @FXML
     private Group tileGroup;
@@ -35,10 +36,16 @@ public class ChessBoardController {
     private int playerTimeSeconds;
 
     public void initialize() {
-        ChessGameController.setPieceGroup(pieceGroup);
+        ChessBot.setPieceGroup(pieceGroup);
         initializeBoard();
         initializeComboBox();
         startTimers();
+
+        if (ChessGameController.getTurnColor() == PieceColor.BLACK) {
+            Bot.makeMove();
+            switchTimers();
+
+        }
     }
 
     private void initializeComboBox() {
@@ -47,7 +54,7 @@ public class ChessBoardController {
     }
 
     private void initializeBoard() {
-        Tile[][] board = ChessGameController.getBoard();
+        Tile[][] board = ChessBot.getBoard();
 
         for (int y = 0; y < ChessGame.HEIGHT; y++) {
             for (int x = 0; x < ChessGame.WIDTH; x++) {
@@ -95,17 +102,22 @@ public class ChessBoardController {
                 return;
             }
 
-            if (piece.getColor() == ChessGameController.getTurnColor() && piece.isValidMove(newX, newY, ChessGameController.getBoard())) {
-                piece.move(newX, newY, ChessGameController.getBoard(), pieceGroup);
-                ChessGameController.switchTurn();
+            if (piece.getColor() == ChessBot.getTurnColor() && piece.isValidMove(newX, newY, ChessBot.getBoard())) {
+                piece.move(newX, newY, ChessBot.getBoard(), pieceGroup);
+                ChessBot.switchTurn();
                 switchTimers();
+
+                // After player's move, let the bot make a move
+                if (ChessBot.getTurnColor() == PieceColor.BLACK) {
+                    Bot.makeMove();
+                    switchTimers();
+                }
             } else {
                 piece.abortMove();
             }
         });
         return piece;
     }
-
     private int toBoard(double pixel) {
         return (int) (pixel + ChessGame.TILE_SIZE / 2) / ChessGame.TILE_SIZE;
     }
@@ -115,10 +127,10 @@ public class ChessBoardController {
             opponentTimeSeconds--;
             updateTimerLabel(opponentTimer, opponentTimeSeconds);
             if (opponentTimeSeconds == 0) {
-               // ChessGameController.moveRandomPiece(PieceColor.BLACK);
-               // opponentTimeSeconds = getSelectedDuration(); // Reset the timer
-               // ChessGameController.switchTurn();
-                ChessGameController.endGame(WHITE);
+                // ChessGameController.moveRandomPiece(PieceColor.BLACK);
+                // opponentTimeSeconds = getSelectedDuration(); // Reset the timer
+                // ChessGameController.switchTurn();
+                endGame(PieceColor.WHITE);
 
             }
         }));
@@ -128,17 +140,17 @@ public class ChessBoardController {
             playerTimeSeconds--;
             updateTimerLabel(playerTimer, playerTimeSeconds);
             if (playerTimeSeconds == 0) {
-               // ChessGameController.moveRandomPiece(PieceColor.WHITE);
-               // playerTimeSeconds = getSelectedDuration();// Reset the timer
-               // ChessGameController.switchTurn();
-                ChessGameController.endGame(BLACK);
+                // ChessGameController.moveRandomPiece(PieceColor.WHITE);
+                // playerTimeSeconds = getSelectedDuration();// Reset the timer
+                // ChessGameController.switchTurn();
+                endGame(BLACK);
             }
         }));
         playerTimeline.setCycleCount(Animation.INDEFINITE);
     }
 
     private void switchTimers() {
-        if (ChessGameController.getTurnColor() == WHITE) {
+        if (ChessBot.getTurnColor() == WHITE) {
             opponentTimeline.pause();
             playerTimeline.play();
         } else {
@@ -157,7 +169,7 @@ public class ChessBoardController {
         tileGroup.getChildren().clear();
         pieceGroup.getChildren().clear();
         initializeBoard();
-        ChessGameController.restartGame();
+        ChessBot.restartGame();
     }
 
     private void resetTimers() {

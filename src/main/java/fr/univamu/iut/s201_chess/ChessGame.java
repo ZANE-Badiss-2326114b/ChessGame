@@ -13,7 +13,7 @@ public class ChessGame extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ChessGame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ChessBot.fxml"));
 //        Parent 1v1 = FXMLLoader.load(getClass().getResource("ChessGame.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
